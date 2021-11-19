@@ -1,5 +1,17 @@
-var express = require('express')
-var app = express()
+const express = require('express')
+const mysql = require('mysql')
+const app = express()
+const cors =require('cors')
+
+app.use(cors());
+app.use(express.json());
+
+const db = mysql.createConnection({
+    user: "root",
+    host: "localhost",
+    password: "admin",
+    database: "test"
+})
 
 app.get('/', (req, res) => {
     res.json({ message: 'Ahoy!' })
