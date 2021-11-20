@@ -7,7 +7,7 @@ const User = require('./models/user')
 
 //import routers
 const indexRouter = require('./routes/index');
-
+const eventRouter = require('./routes/events')
 
 var app = express();
 app.use(cors());
@@ -21,7 +21,7 @@ const db = mysql.createConnection({
 });
 
 app.use('/', indexRouter);
-
+app.use('/event', eventRouter)
 
 
 app.get("/test", (req, res) => {
