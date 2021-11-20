@@ -5,7 +5,11 @@ const cors = require("cors");
 const mongoose = require('mongoose');
 const User = require('./models/user')
 
-const app = express();
+//import routers
+const indexRouter = require('./routes/index');
+
+
+var app = express();
 app.use(cors());
 app.use(express.json());
 
@@ -16,9 +20,9 @@ const db = mysql.createConnection({
     database: "test",
 });
 
-app.get("/", (req, res) => {
-    res.json({ message: "Ahoy!" });
-});
+app.use('/', indexRouter);
+
+
 
 app.get("/test", (req, res) => {
     db.query("select * from name", (err, result) => {
