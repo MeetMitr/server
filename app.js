@@ -18,9 +18,9 @@ app.use(express.json());
 
 const db = mysql.createConnection({
     user: "root",
-    host: "34.124.227.137",
+    host: "34.87.51.10",
     password: "admin",
-    database: "test",
+    database: "main",
 });
 
 app.use('/', indexRouter);
