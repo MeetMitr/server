@@ -1,6 +1,6 @@
 const express = require("express");
 const mysql = require("mysql");
-const initServer = require('./configs/database');
+const initServer = require('./configs/database.js');
 const cors = require("cors");
 const mongoose = require('mongoose');
 const User = require('./models/user')
@@ -15,7 +15,7 @@ app.use(express.json());
 
 const db = mysql.createConnection({
     user: "root",
-    host: "localhost",
+    host: "34.124.227.137",
     password: "admin",
     database: "test",
 });
