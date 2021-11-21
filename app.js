@@ -1,6 +1,6 @@
 const express = require("express");
 const mysql = require("mysql");
-const initServer = require('./configs/nosql_db');
+const initServer = require('./configs/database');
 const cors = require("cors");
 const mongoose = require('mongoose');
 const User = require('./models/user')
