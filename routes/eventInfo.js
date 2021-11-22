@@ -16,7 +16,7 @@ router.get("/:eventId", (req, res) => {
 
 router.post("/",(req,res) => {
     const {userId, eventId} = req.body;
-    var sql1 = `SELECT userId, eventId, status FROM UserJoinEvent WHERE userId = '${userId}' && eventId = '${eventId}''` ;
+    var sql1 = `SELECT userId, eventId, status FROM UserJoinEvent WHERE userId = '${userId}' && eventId = '${eventId}'` ;
     db.query(sql1, function (err, result) {
         if (result[0] == null) {
             var sql2 = `INSERT INTO UserJoinEvent (userId, eventId, status) VALUES ('${userId}', '${eventId}', 1)`;
