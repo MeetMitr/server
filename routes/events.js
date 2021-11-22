@@ -1,5 +1,15 @@
 const express = require("express");
 const router = express.Router();
+const { uuid } = require('uuidv4');
+const bcrypt = require('bcrypt');
+const mysql = require("mysql");
+
+const db= mysql.createConnection({
+  user: "root",
+  host: "34.87.51.10",
+  password: "admin",
+  database: "main",
+});
 
 router.get("/", (req, res) => {
   res.json({
@@ -41,9 +51,18 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get("/:id", (req, res) => {
-  const id = req.params.id;
-  res.json({ message: "Ahoy!", id: id });
+router.get("/:searchname", (req, res) => {
+  console.log("finding...")
+  const searchName = req.params.searchname;
+  console.log(searchName)
+  let sql = `SELECT * FROM Event WHERE name LIKE '%${searchName}%'`;
+  db.query(sql, (err, result) => {
+      if (err) throw err;
+    console.log(result);
+    res.json( result );
+
+  });
+  // res.json({ message: "Ahoy!", id: id });
 });
 
 module.exports = router;
