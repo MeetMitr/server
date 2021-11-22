@@ -26,10 +26,10 @@ router.post("/",(req,res) => {
                 res.json("join event success")
             });
         } else {
-            if(result[0].status == 1){
-                var sql3 = `UPDATE UserJoinEvent SET status='0' WHERE userId = '${userId}' && eventId = '${eventId}'`;
-            }else{
+            if(result[0].status == 0){
                 var sql3 = `UPDATE UserJoinEvent SET status='1' WHERE userId = '${userId}' && eventId = '${eventId}'`;
+            }else{
+                var sql3 = `UPDATE UserJoinEvent SET status='0' WHERE userId = '${userId}' && eventId = '${eventId}'`;
             }
             db.query(sql3, function (err) {
                 if (err) throw err;
