@@ -5,7 +5,7 @@ const db = require('../models/database')
 
 router.post('/' , (req, res) => {
     const {email, password} = req.body;
-    db.query("SELECT * FROM User JOIN CoinTransaction WHERE email = " + "'" +email+"'", (err, rows, fields) => {
+    db.query("SELECT * FROM User WHERE email = " + "'" +email+"'", (err, rows, fields) => {
         if (!err){
             hash_password = rows[0].password;
             if (bcrypt.compareSync(password, hash_password)) {
