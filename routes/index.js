@@ -1,13 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const mysql = require("mysql");
 const bcrypt = require('bcrypt');
-const db = mysql.createConnection({
-    user: "root",
-    host: "34.87.51.10",
-    password: "admin",
-    database: "main",
-});
+const db = require('../models/database')
 
 router.post('/' , (req, res) => {
     const {email, password} = req.body;

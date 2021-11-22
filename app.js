@@ -1,5 +1,4 @@
 const express = require("express");
-const mysql = require("mysql");
 const initServer = require('./configs/database.js');
 const cors = require("cors");
 const mongoose = require('mongoose');
@@ -11,17 +10,10 @@ const eventRouter = require('./routes/events');
 const registerRouter = require('./routes/register');
 const eventFeedRouter = require('./routes/eventFeed');
 const eventInfoRouter = require('./routes/eventInfo');
-
+const db = require('./models/database')
 var app = express();
 app.use(cors());
 app.use(express.json());
-
-const db = mysql.createConnection({
-    user: "root",
-    host: "34.87.51.10",
-    password: "admin",
-    database: "main",
-});
 
 app.use('/', indexRouter);
 app.use('/event', eventRouter);

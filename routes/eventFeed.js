@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const mysql = require("mysql");
+const db = require('../models/database')
 
 router.get("/", (req, res) => {
     // var events = [
@@ -18,13 +18,6 @@ router.get("/", (req, res) => {
       console.log(result);
       res.json( result );
     });
-});
-
-const db= mysql.createConnection({
-    user: "root",
-    host: "34.87.51.10",
-    password: "admin",
-    database: "main",
 });
 
 router.get("/:eventId", (req, res) => {
