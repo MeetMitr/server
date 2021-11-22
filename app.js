@@ -14,6 +14,7 @@ const deleteAccountRouter = require('./routes/deleteAccount');
 const reportRouter = require('./routes/report');
 const getUserRouter = require('./routes/getUser');
 const addFriendRouter = require('./routes/addFriend');
+const queryRouter = require('./routes/query');
 const db = require('./models/database');
 var app = express();
 app.use(cors());
@@ -28,6 +29,7 @@ app.use('/deleteAccount', deleteAccountRouter);
 app.use('/report', reportRouter);
 app.use('/getUser', getUserRouter);
 app.use('/addFriend', addFriendRouter);
+app.use('/query', queryRouter);
 
 app.get("/test", (req, res) => {
     db.query("select * from name", (err, result) => {
