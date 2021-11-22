@@ -17,7 +17,6 @@ const userSchema = new Schema({
     },
     profileName: {
         type: String,
-        required: true
     },
     birthdate: {
         type: Date
@@ -36,14 +35,13 @@ const userSchema = new Schema({
     },
     middleName: {
         type: String,
-        required: true
     },
     lastName: {
         type: String,
         required: true
     },
     hideGender: {
-        type: String,
+        type: Boolean,
         required: true
     },
     numberOfPenalty: {
