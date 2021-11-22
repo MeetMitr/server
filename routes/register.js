@@ -2,6 +2,7 @@ const express = require('express');
 const mysql = require("mysql");
 const router = express.Router();
 const { uuid } = require('uuidv4');
+const bcrypt = require('bcrypt');
 
 const db= mysql.createConnection({
     user: "root",
@@ -24,8 +25,8 @@ router.post("/",(req,res,next) => {
     db.connect(function(err) {
         if (err) throw err;
         const {firstName, lastName, password, email, birthdate, gender} = req.body;
-        console.log("Test ->" + password)
-        var sql = `INSERT INTO User (userId, email, gender, profileName, phoneNo, bio, birthdate, password, firstName, middleName, lastName, hideGender, numberOfPenalty) VALUES (${"'"+uuid()+"'"},${"'"+email+"'"}, ${"'"+gender+"'"},'profileName', '','',${"'"+birthdate+"'"},${"'"+password+"'"}, ${"'"+firstName+"'"},'',${"'"+lastName+"'"},0,0)`;
+        const password_hash = bcrypt.hashSync(password, 10);
+        var sql = `INSERT INTO User (userId, email, gender, profileName, phoneNo, bio, birthdate, password, firstName, middleName, lastName, hideGender, numberOfPenalty) VALUES (${"'"+uuid()+"'"},${"'"+email+"'"}, ${"'"+gender+"'"},'profileName', '','',${"'"+birthdate+"'"},${"'"+password_hash+"'"}, ${"'"+firstName+"'"},'',${"'"+lastName+"'"},0,0)`;
         db.query(sql, function (err, result) {
           if (err) throw err;
           console.log("register success")
