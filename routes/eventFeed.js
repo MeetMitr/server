@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
     res.json({ });
 });
 
-router.get("/:evnetId", (req, res) => {
+router.get("/:eventId", (req, res) => {
     var eventId = req.params
     res.json({ message: eventId });
 });
