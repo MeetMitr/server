@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models/database')
 
-router.delete("/",(req,res) => {
+router.post("/",(req,res) => {
     const {userId} = req.body;
     console.log(userId)
     var sql = `DELETE FROM User WHERE userId = '${userId}'`;
