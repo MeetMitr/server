@@ -27,11 +27,41 @@ router.post("/",(req,res,next) => {
     const {userId, eventId} = req.body;
     console.log("----->" + userId);
     console.log("----->" + eventId);
-    var sql = `INSERT INTO UserJoinEvent (userId, eventId, status) VALUES (${"'"+userId+"'"}, ${"'"+eventId+"'"}, 1)`;
-    db.query(sql, function (err, result) {
-        if (err) throw err;
-        console.log("join event success")
-        res.json("join event success")
+    var sql1 = "SELECT userId, eventId, status FROM UserJoinEvent WHERE userId = " + "'"+userId+"' && " + "eventId = '"+eventId+"'" ;
+    db.query(sql1, function (err, result) {
+        if (result[0] == null) {
+            var sql2 = `INSERT INTO UserJoinEvent (userId, eventId, status) VALUES (${"'"+userId+"'"}, ${"'"+eventId+"'"}, 1)`;
+            db.query(sql2, function (err, result) {
+                if (err) throw err;
+                console.log("join event success")
+                res.json("join event success")
+            });
+        } else {
+            if(result[0].status == 1){
+                var sql3 = "UPDATE UserJoinEvent SET status='0' WHERE userId = " + "'"+userId+"' && " + "eventId = '"+eventId+"'";
+            }else{
+                var sql3 = "UPDATE UserJoinEvent SET status='1' WHERE userId = " + "'"+userId+"' && " + "eventId = '"+eventId+"'";
+            }
+            db.query(sql3, function (err, result) {
+                if (err) throw err;
+                console.log("update status success")
+                res.json("update status success")
+            });
+            console.log("-------------")
+
+            //var sql3 = "UPDATE UserJoinEvent SET status = 1 where userId = " + "'"+userId+"' &&" + "eventId = '"+eventId+"'"
+            //console.log(result[0].status)
+            // console.log(result[0] == null)
+            //res.json(result)
+        }
     });
+
+
+    // var sql2 = `INSERT INTO UserJoinEvent (userId, eventId, status) VALUES (${"'"+userId+"'"}, ${"'"+eventId+"'"}, 1)`;
+    // db.query(sql2, function (err, result) {
+    //     if (err) throw err;
+    //     console.log("join event success")
+    //     res.json("join event success")
+    // });
 });
 module.exports = router;
