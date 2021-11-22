@@ -27,7 +27,6 @@ app.use('/deleteAccount', deleteAccountRouter);
 app.use('/report', reportRouter);
 app.use('/getUser', getUserRouter);
 
-
 app.get("/test", (req, res) => {
     db.query("select * from name", (err, result) => {
         if (err) {
@@ -37,7 +36,6 @@ app.get("/test", (req, res) => {
         }
     });
 });
-
 
 app.get("/mongo", (req, res) => {
     User.find(function (err, result) {
@@ -49,8 +47,6 @@ app.get("/mongo", (req, res) => {
         }
     });
 })
-
-
 
 //connect db + start server
 const PORT = process.env.PORT || 4000;
