@@ -11,6 +11,7 @@ const registerRouter = require('./routes/register');
 const eventFeedRouter = require('./routes/eventFeed');
 const eventInfoRouter = require('./routes/eventInfo');
 const deleteAccountRouter = require('./routes/deleteAccount');
+const reportRouter = require('./routes/report');
 const db = require('./models/database')
 var app = express();
 app.use(cors());
@@ -22,6 +23,7 @@ app.use('/register', registerRouter);
 app.use('/eventFeed', eventFeedRouter);
 app.use('/eventInfo', eventInfoRouter);
 app.use('/deleteAccount', deleteAccountRouter);
+app.use('/report', reportRouter);
 
 
 app.get("/test", (req, res) => {
