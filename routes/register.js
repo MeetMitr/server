@@ -1,8 +1,21 @@
 const express = require('express');
+const mysql = require("mysql");
 const router = express.Router();
 
+const db= mysql.createConnection({
+    user: "root",
+    host: "34.87.51.10",
+    password: "admin",
+    database: "main",
+});
+
 router.get("/", (req, res) => {
-    res.json({ message: "let's register!" });
+    let sql = "SELECT * FROM Event";
+    db.query(sql, (err, result) => {
+        if (err) throw err;
+      console.log(result);
+      res.json( result );
+    });
 });
 
 router.post("/",(req,res,next) => {
